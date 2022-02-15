@@ -16,7 +16,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-import { collection, getDocs } from 'firebase/firestore/lite'
+import { collection, getDocs, doc, setDoc } from 'firebase/firestore/lite'
+import { AntDesign, Ionicons } from '@expo/vector-icons'
 import colors from '../constans/colors'
 
 export default function ProfileScreen() {
@@ -25,20 +26,50 @@ export default function ProfileScreen() {
   const [password, setPassword] = useState('')
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [isUser, setIsUser] = useState(true)
+  const [isEditName, setIsEditName] = useState(false)
+  const [userPoint, setUserPoint] = useState('0')
+
   //
 
   const [user, setUser] = useState()
 
   //
 
+  const SetUserName = async () => {
+    await setDoc(doc(db, 'names', email), {
+      'user-name': name,
+      'user-email': email,
+    })
+  }
+  const SetFirstData = async () => {
+    await setDoc(doc(db, 'names', email), {
+      'user-name': '',
+      'user-email': email,
+    })
+  }
+
+  const GetData = async () => {
+    const userCol = collection(db, 'names')
+    const userSnapshot = await getDocs(userCol)
+    const userList = userSnapshot.docs.map((doc) => doc.data())
+
+    userList.map((item) => {
+      if (item['user-email'] == email) {
+        console.log(item)
+        setName(item['user-name'])
+        setUserPoint(item['user-point'])
+      }
+    })
+  }
+
   function Register() {
-    createUserWithEmailAndPassword(auth, email, password, { name: name })
+    createUserWithEmailAndPassword(auth, email, password)
       .then((re) => {
         setIsSignedIn(true)
         setUser(email)
-        setEmail('')
-        setPassword('')
         setName('')
+        SetFirstData()
+        GetData()
       })
       .catch((err) => console.log(err))
   }
@@ -48,16 +79,18 @@ export default function ProfileScreen() {
       .then((re) => {
         setIsSignedIn(true)
         setUser(email)
-        setEmail('')
-        setPassword('')
-        setName('')
+        GetData()
       })
       .catch((err) => console.log(err))
   }
 
   function SingOut() {
     signOut(auth)
-      .then(() => setIsSignedIn(false))
+      .then(() => {
+        setIsSignedIn(false)
+        setEmail('')
+        setPassword('')
+      })
       .catch((err) => console.log(err))
   }
 
@@ -75,13 +108,54 @@ export default function ProfileScreen() {
             />
           </View>
           <View style={styles.profileBlockCol}>
-            <Text style={styles.name}>{user}</Text>
+            {isEditName ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
+                <TouchableOpacity
+                  onPress={() => {
+                    setIsEditName(false)
+                    SetUserName()
+                  }}
+                >
+                  <Ionicons
+                    name="ios-checkbox-outline"
+                    size={24}
+                    color="black"
+                  />
+                </TouchableOpacity>
+                <TextInput
+                  style={{
+                    width: 150,
+                    fontSize: 20,
+                    borderBottomWidth: 1,
+                    borderColor: colors.blue,
+                    padding: 0,
+                  }}
+                  placeholder="name"
+                  value={name}
+                  onChangeText={(text) => setName(text)}
+                />
+              </View>
+            ) : (
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <TouchableOpacity onPress={() => setIsEditName(true)}>
+                  <AntDesign name="edit" size={20} color="#444" />
+                </TouchableOpacity>
+                <Text style={styles.name}>{name}</Text>
+              </View>
+            )}
+
+            <Text style={{ fontSize: 10 }}>{user}</Text>
             <Text style={styles.level}>Level: Intermediate</Text>
           </View>
         </View>
 
         <View style={styles.complete}>
-          <Text style={styles.completeText}>4</Text>
+          <Text style={styles.completeText}>{userPoint}</Text>
         </View>
       </View>
       <View
@@ -109,14 +183,13 @@ export default function ProfileScreen() {
             { backgroundColor: '#3c4043', padding: 5, width: '49%' },
           ]}
         >
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity onPress={GetData}>
             <Text style={{ textAlign: 'center', color: '#fff', fontSize: 20 }}>
               EDIT
             </Text>
           </TouchableOpacity>
         </View>
       </View>
-
       <View style={styles.card}></View>
     </>
   )
@@ -148,7 +221,7 @@ export default function ProfileScreen() {
             <Text style={styles.buttonText}>REGISTER</Text>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', padding: 10 }}>
-            <Text style={{ fontSize: 18 }}>Already have an accaunt?</Text>
+            <Text style={{ fontSize: 18 }}>Already have an account?</Text>
             <TouchableOpacity onPress={() => setIsUser(true)}>
               <Text
                 style={{ color: colors.blue, paddingLeft: 5, fontSize: 18 }}
@@ -189,7 +262,7 @@ export default function ProfileScreen() {
             <Text style={styles.buttonText}>LOGIN</Text>
           </TouchableOpacity>
           <View style={{ flexDirection: 'row', padding: 10 }}>
-            <Text style={{ fontSize: 18 }}>Don't have an accaunt?</Text>
+            <Text style={{ fontSize: 18 }}>Don't have an account?</Text>
             <TouchableOpacity onPress={() => setIsUser(false)}>
               <Text
                 style={{ color: colors.blue, paddingLeft: 5, fontSize: 18 }}
