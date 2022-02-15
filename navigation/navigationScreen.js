@@ -7,6 +7,7 @@ import ProfileScreen from '../screens/profileScreen'
 import TheoryLessonsScreen from '../screens/theoryLessonsScreen'
 import TheorySavedScreen from '../screens/theorySavedScreen'
 import SettingsScreen from '../screens/settingsScreen'
+import ChatScreen from '../screens/chatScreen'
 
 const Drawer = createDrawerNavigator()
 const Tab = createMaterialTopTabNavigator()
@@ -34,6 +35,7 @@ export default function NavigationScreen() {
     <Drawer.Navigator>
       <Drawer.Screen name="Profile" component={ProfileNavigation} />
       <Drawer.Screen name="Theory" component={ThoryNavigation} />
+      <Drawer.Screen name="Chat" component={ChatScreen} />
     </Drawer.Navigator>
   )
 }

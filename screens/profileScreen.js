@@ -20,7 +20,7 @@ import { collection, getDocs, doc, setDoc } from 'firebase/firestore/lite'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 import colors from '../constans/colors'
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ props }) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
