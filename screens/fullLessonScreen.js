@@ -15,23 +15,22 @@ function Example(props) {
   return (
     <View
       key={Math.random()}
-      style={{
-        borderLeftWidth: 5,
-        borderColor: colors[props.color],
-        margin: 5,
-        paddingHorizontal: 5,
-        elevation: 5,
-        backgroundColor: '#fff',
-        borderRadius: 5,
-      }}
+      style={[
+        props.color
+          ? [styles.exampleBlock, { borderColor: colors[props.color] }]
+          : styles.exampleBlockNone,
+      ]}
     >
       <Text
-        style={{
-          fontSize: 16,
-          color: colors[props.color],
-          textTransform: 'uppercase',
-          letterSpacing: 2,
-        }}
+        style={
+          props.title
+            ? [
+                props.color
+                  ? [styles.exampleTitle, { color: colors[props.color] }]
+                  : styles.exampleTitleNone,
+              ]
+            : { height: 0 }
+        }
       >
         {props.title}
       </Text>
@@ -42,30 +41,37 @@ function Example(props) {
 
 export default function FullLessonScreen(props) {
   return (
-    <ScrollView style={{ flex: 1 }}>
-      <View style={styles.screen}>
-        <ImageBackground
-          source={
-            props.imageUrl
-              ? { uri: props.imageUrl }
-              : require('../img/Frame.jpg')
-          }
-          style={styles.image}
+    <View style={styles.screen}>
+      <ImageBackground
+        source={
+          props.route.params.imageUrl
+            ? { uri: props.route.params.imageUrl }
+            : props.route.params.id[0] == 't'
+            ? require('../img/FrameGreen.jpg')
+            : require('../img/Frame.jpg')
+        }
+        style={styles.image}
+      >
+        <TouchableOpacity
+          style={styles.back}
+          onPress={() => props.navigation.goBack()}
         >
-          <TouchableOpacity
-            style={styles.back}
-            onPress={() => props.navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={24} color="#fff" />
-          </TouchableOpacity>
-          <Text style={styles.title}>{props.route.params.title}</Text>
-          <View style={{ width: 24 }} />
-        </ImageBackground>
+          <Ionicons name="arrow-back" size={24} color="#fff" />
+        </TouchableOpacity>
+        <Text style={styles.title}>{props.route.params.title}</Text>
+        <View style={{ width: 24 }} />
+      </ImageBackground>
+      <ScrollView>
         {props.route.params.text1.map((item) => (
-          <Example color={item.color} title={item.title} text={item.text} />
+          <Example
+            color={item.color}
+            title={item.title}
+            text={item.text}
+            key={Math.random()}
+          />
         ))}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   )
 }
 
@@ -96,5 +102,28 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
+  },
+  exampleBlock: {
+    borderLeftWidth: 5,
+    margin: 5,
+    paddingHorizontal: 5,
+    elevation: 5,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+  },
+  exampleBlockNone: {
+    padding: 5,
+  },
+  exampleTitle: {
+    fontSize: 16,
+    textTransform: 'uppercase',
+    letterSpacing: 2,
+  },
+  exampleTitleNone: {
+    color: '#000',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+    letterSpacing: 1,
   },
 })

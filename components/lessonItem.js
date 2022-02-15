@@ -31,6 +31,8 @@ export default function LessonItem(props) {
             source={
               props.imageUrl
                 ? { uri: props.imageUrl }
+                : props.id[0] == 't'
+                ? require('../img/FrameGreen.jpg')
                 : require('../img/Frame.jpg')
             }
             style={{

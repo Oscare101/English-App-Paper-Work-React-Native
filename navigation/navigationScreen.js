@@ -6,6 +6,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import ProfileScreen from '../screens/profileScreen'
 import TheoryLessonsScreen from '../screens/theoryLessonsScreen'
 import TheorySavedScreen from '../screens/theorySavedScreen'
+import SettingsScreen from '../screens/settingsScreen'
 
 const Drawer = createDrawerNavigator()
 const Tab = createMaterialTopTabNavigator()
@@ -14,7 +15,7 @@ function ProfileNavigation() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Your Profile" component={ProfileScreen} />
-      <Tab.Screen name="Settings" component={ProfileScreen} />
+      <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   )
 }

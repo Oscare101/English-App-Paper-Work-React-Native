@@ -43,7 +43,7 @@ function LessonsFirstScreen(props) {
     <View style={styles.screen}>
       <View style={styles.titleView}>
         <View style={styles.blackLine} />
-        <Text style={styles.titleText}>lesson</Text>
+        <Text style={styles.titleText}>LESSONS</Text>
         <View style={styles.blackLine} />
       </View>
 
@@ -83,6 +83,6 @@ const styles = StyleSheet.create({
   blackLine: { height: 2, width: '20%', backgroundColor: '#000' },
   titleText: {
     paddingHorizontal: 5,
-    fontSize: 24,
+    fontSize: 20,
   },
 })
