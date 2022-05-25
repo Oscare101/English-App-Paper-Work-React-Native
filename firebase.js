@@ -4,14 +4,12 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore/lite'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCy7DyTX5vlSGjIYzTJE5VLbjnj_h1JIB4',
-  authDomain: 'rn-first-try-server.firebaseapp.com',
-  databaseURL: 'https://rn-first-try-server-default-rtdb.firebaseio.com',
-  projectId: 'rn-first-try-server',
-  storageBucket: 'rn-first-try-server.appspot.com',
-  messagingSenderId: '884638807290',
-  appId: '1:884638807290:web:d1ab5d0d74f855d0804543',
-  measurementId: 'G-KPZ40LDTSG',
+  apiKey: 'AIzaSyAUC8j5hSewO8MxJ0WlwGLNbHCIRgvznDI',
+  authDomain: 'rn-ea-app.firebaseapp.com',
+  projectId: 'rn-ea-app',
+  storageBucket: 'rn-ea-app.appspot.com',
+  messagingSenderId: '1097167151956',
+  appId: '1:1097167151956:web:f4498787098aa776d8dec1',
 }
 
 // Initialize Firebase

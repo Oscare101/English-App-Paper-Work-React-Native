@@ -21,7 +21,7 @@ function ProfileNavigation() {
   )
 }
 
-function ThoryNavigation() {
+function TheoryNavigation() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Book" component={TheoryLessonsScreen} />
@@ -34,7 +34,7 @@ export default function NavigationScreen() {
   return (
     <Drawer.Navigator>
       <Drawer.Screen name="Profile" component={ProfileNavigation} />
-      <Drawer.Screen name="Theory" component={ThoryNavigation} />
+      <Drawer.Screen name="Theory" component={TheoryNavigation} />
       <Drawer.Screen name="Chat" component={ChatScreen} />
     </Drawer.Navigator>
   )

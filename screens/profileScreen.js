@@ -20,7 +20,7 @@ import { collection, getDocs, doc, setDoc } from 'firebase/firestore/lite'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
 import colors from '../constans/colors'
 
-export default function ProfileScreen({ props }) {
+export default function ProfileScreen(props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -33,18 +33,16 @@ export default function ProfileScreen({ props }) {
 
   const [user, setUser] = useState()
 
-  //
-
   const SetUserName = async () => {
-    await setDoc(doc(db, 'names', email), {
+    await setDoc(doc(db, 'names', auth.currentUser.email), {
       'user-name': name,
-      'user-email': email,
+      'user-email': auth.currentUser.email,
     })
   }
   const SetFirstData = async () => {
-    await setDoc(doc(db, 'names', email), {
+    await setDoc(doc(db, 'names', auth.currentUser.email), {
       'user-name': '',
-      'user-email': email,
+      'user-email': auth.currentUser.email,
     })
   }
 
@@ -54,10 +52,9 @@ export default function ProfileScreen({ props }) {
     const userList = userSnapshot.docs.map((doc) => doc.data())
 
     userList.map((item) => {
-      if (item['user-email'] == email) {
+      if (item['user-email'] == auth.currentUser.email) {
         console.log(item)
         setName(item['user-name'])
-        setUserPoint(item['user-point'])
       }
     })
   }
@@ -66,7 +63,7 @@ export default function ProfileScreen({ props }) {
     createUserWithEmailAndPassword(auth, email, password)
       .then((re) => {
         setIsSignedIn(true)
-        setUser(email)
+        setEmail(email)
         setName('')
         SetFirstData()
         GetData()
@@ -183,7 +180,7 @@ export default function ProfileScreen({ props }) {
             { backgroundColor: '#3c4043', padding: 5, width: '49%' },
           ]}
         >
-          <TouchableOpacity onPress={GetData}>
+          <TouchableOpacity onPress={() => {}}>
             <Text style={{ textAlign: 'center', color: '#fff', fontSize: 20 }}>
               EDIT
             </Text>
