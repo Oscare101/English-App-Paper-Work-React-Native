@@ -183,6 +183,7 @@ export const TESTS = [
       b: 'has already started',
       c: 'was started',
       d: 'is starting',
+      answer: 'b',
     },
   ]),
 ]
