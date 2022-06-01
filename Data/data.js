@@ -1,8 +1,8 @@
-import Leason from '../models/leasons'
+import Lesson from '../models/lessons'
 import Tests from '../models/tests'
 
-export const LEASONS = [
-  new Leason('t1', 'Present Simple', '', '10', 'pre-intermediate', [
+export const LESSONS = [
+  new Lesson('t1', 'Present Simple', '', '10', 'pre-intermediate', [
     {
       color: '',
       title: 'Rule',
@@ -54,7 +54,7 @@ export const LEASONS = [
       text: 'Kid’s health depends on eating enough fruits\nThe building has three rooms\nSix plus four makes ten',
     },
   ]),
-  new Leason('t2', 'Past Simple', '', '10', 'pre-intermediate', [
+  new Lesson('t2', 'Past Simple', '', '10', 'pre-intermediate', [
     {
       color: '',
       title: 'Rule',
@@ -102,13 +102,13 @@ export const LEASONS = [
       text: 'Kitchen used to bevery different a hundred years ago.',
     },
   ]),
-  new Leason('t3', 'Future Simple', '', '10', 'pre-intermediate', [
+  new Lesson('t3', 'Future Simple', '', '10', 'pre-intermediate', [
     { color: '', title: '', text: '' },
   ]),
-  new Leason('t4', 'Present Continuous', '', '10', 'pre-intermediate', [
+  new Lesson('t4', 'Present Continuous', '', '10', 'pre-intermediate', [
     { color: '', title: '', text: '' },
   ]),
-  new Leason('t5', 'Past Continuous', '', '15', 'pre-intermediate', [
+  new Lesson('t5', 'Past Continuous', '', '15', 'pre-intermediate', [
     {
       color: '',
       title: '',
@@ -161,13 +161,13 @@ export const LEASONS = [
       text: 'The birds were singing and the leaves were rustling in the breeze ...',
     },
   ]),
-  new Leason('t6', 'Future Continuous', '', '15', 'pre-intermediate', [
+  new Lesson('t6', 'Future Continuous', '', '15', 'pre-intermediate', [
     { color: '', title: '', text: '' },
   ]),
-  new Leason('t7', 'Present Perfect', '', '20', 'intermediate', [
+  new Lesson('t7', 'Present Perfect', '', '20', 'intermediate', [
     { color: '', title: '', text: '' },
   ]),
-  new Leason('t8', 'Present Perfect Continuous', '', '20', 'intermediate', [
+  new Lesson('t8', 'Present Perfect Continuous', '', '20', 'intermediate', [
     { color: '', title: '', text: '' },
   ]),
 ]

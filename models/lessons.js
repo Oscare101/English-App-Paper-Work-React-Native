@@ -1,4 +1,4 @@
-export default class Leason {
+export default class Lesson {
   constructor(id, title, imageUrl, duration, complexity, text1) {
     this.id = id
     this.title = title

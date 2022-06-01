@@ -12,7 +12,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import LessonItem from '../components/lessonItem'
 
-import { LEASONS } from '../Data/data'
+import { LESSONS } from '../Data/data'
 
 import FullLessonScreen from './fullLessonScreen'
 
@@ -49,7 +49,7 @@ function LessonsFirstScreen(props) {
 
       <FlatList
         numColumns={2}
-        data={LEASONS}
+        data={LESSONS}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
