@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 import ProfileScreen from '../screens/profileScreen'
 import TheoryLessonsScreen from '../screens/theoryLessonsScreen'
-import TheorySavedScreen from '../screens/theorySavedScreen'
+import TestScreen from '../screens/testScreen'
 import SettingsScreen from '../screens/settingsScreen'
 import ChatScreen from '../screens/chatScreen'
 
@@ -25,7 +25,7 @@ function TheoryNavigation() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Book" component={TheoryLessonsScreen} />
-      <Tab.Screen name="Saved" component={TheorySavedScreen} />
+      <Tab.Screen name="Test" component={TestScreen} />
     </Tab.Navigator>
   )
 }
