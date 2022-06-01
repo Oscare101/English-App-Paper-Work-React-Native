@@ -175,14 +175,38 @@ export const LEASONS = [
 export const TESTS = [
   new Tests('test1', 'Past perfect', '5', 'pre-intermediate', [
     {
-      title: 'Complete sentences',
-    },
-    {
       text: 'Oh no! We`re late! The film _____',
       a: 'start',
       b: 'has already started',
       c: 'was started',
       d: 'is starting',
+      answer: 'b',
+    },
+
+    {
+      text: 'I _____ this movie. What is it about?',
+      a: 'have never seen',
+      b: 'didn`t see',
+      c: 'saw',
+      d: 'don`t see',
+      answer: 'a',
+    },
+    {
+      text: 'Oh no way, I _____ that man before!',
+      a: 'see',
+      b: 'is seeing',
+      c: 'have seen',
+      d: 'has seen',
+      answer: 'c',
+    },
+  ]),
+  new Tests('test2', 'Past perfect continuous', '5', 'pre-intermediate', [
+    {
+      text: 'I _____ English for 5 years',
+      a: 'study',
+      b: 'has been studying',
+      c: 'was studying',
+      d: 'am studying',
       answer: 'b',
     },
   ]),
