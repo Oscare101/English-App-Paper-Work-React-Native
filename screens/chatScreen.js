@@ -53,6 +53,13 @@ function WithEmail() {
       message: message,
       time: new Date().toLocaleString(),
     })
+    const letitem = {
+      name: 'Kyryll',
+      email: '123@gmail.com',
+      message: message,
+      time: new Date().toLocaleString(),
+    }
+    // setChatList((current) => [...current, letitem])
     GetData()
     setMessage('')
   }
